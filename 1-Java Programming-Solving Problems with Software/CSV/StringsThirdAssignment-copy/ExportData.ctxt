@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.target=ExportData
+comment1.params=
+comment1.target=void\ tester()
+comment2.params=parser\ country
+comment2.target=java.lang.String\ countryInfo(org.apache.commons.csv.CSVParser,\ java.lang.String)
+comment2.text=\n\ Prints\ information\ for\ a\ specific\ country.\n\ @param\ parser\ The\ CSVParser\ for\ the\ data.\n\ @param\ country\ The\ name\ of\ the\ country.\n\ @return\ A\ string\ with\ the\ country's\ export\ information\ or\ "NOT\ FOUND".\n
+comment3.params=parser\ exportItem1\ exportItem2
+comment3.target=void\ listExportersTwoProducts(org.apache.commons.csv.CSVParser,\ java.lang.String,\ java.lang.String)
+comment3.text=\n\ Prints\ the\ names\ of\ countries\ that\ export\ two\ specific\ items.\n\ @param\ parser\ The\ CSVParser\ for\ the\ data.\n\ @param\ exportItem1\ The\ first\ export\ item.\n\ @param\ exportItem2\ The\ second\ export\ item.\n
+comment4.params=parser\ exportItem
+comment4.target=int\ numberOfExporters(org.apache.commons.csv.CSVParser,\ java.lang.String)
+comment4.text=\n\ Counts\ the\ number\ of\ countries\ that\ export\ a\ specific\ item.\n\ @param\ parser\ The\ CSVParser\ for\ the\ data.\n\ @param\ exportItem\ The\ export\ item\ to\ count.\n\ @return\ The\ number\ of\ countries.\n
+comment5.params=parser\ amount
+comment5.target=void\ bigExporters(org.apache.commons.csv.CSVParser,\ java.lang.String)
+comment5.text=\n\ Prints\ the\ names\ and\ values\ of\ countries\ with\ an\ export\ value\ string\ longer\ than\ the\ given\ amount\ string.\n\ @param\ parser\ The\ CSVParser\ for\ the\ data.\n\ @param\ amount\ The\ string\ representation\ of\ the\ dollar\ amount.\n
+comment6.params=parser\ exportItem1\ exportItem2\ n
+comment6.target=java.lang.String\ findNthCountryWithTwoProducts(org.apache.commons.csv.CSVParser,\ java.lang.String,\ java.lang.String,\ int)
+comment6.text=\n\ Finds\ the\ name\ of\ the\ Nth\ country\ that\ exports\ two\ specific\ items.\n\ In\ this\ case,\ it\ finds\ the\ third\ country.\n\n\ @param\ parser\ \ \ \ The\ CSVParser\ for\ the\ data.\n\ @param\ exportItem1\ The\ first\ export\ item.\n\ @param\ exportItem2\ The\ second\ export\ item.\n\ @return\ The\ name\ of\ the\ third\ country\ found,\ or\ "NOT\ FOUND"\ if\ fewer\ than\ three\ countries\ match.\n
+numComments=7
