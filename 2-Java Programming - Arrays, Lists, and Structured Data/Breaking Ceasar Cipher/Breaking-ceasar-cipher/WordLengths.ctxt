@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=WordLengths
+comment0.text=\n\ Assignment\ 1\:\ Word\ Lengths\n\ This\ class\ counts\ the\ lengths\ of\ words\ in\ text\n
+comment1.params=content\ counts
+comment1.target=void\ countWordLengths(java.lang.String,\ int[])
+comment1.text=\n\ Counts\ the\ length\ of\ words\ in\ a\ file\ and\ stores\ in\ counts\ array\n\ @param\ content\ -\ the\ text\ content\ to\ analyze\n\ @param\ counts\ -\ array\ to\ store\ word\ length\ counts\n
+comment2.params=word
+comment2.target=int\ getWordLength(java.lang.String)
+comment2.text=\n\ Helper\ method\ to\ get\ the\ actual\ word\ length\ excluding\ non-letter\ punctuation\n\ at\ the\ beginning\ or\ end\n
+comment3.params=values
+comment3.target=int\ indexOfMax(int[])
+comment3.text=\n\ Returns\ the\ index\ of\ the\ maximum\ value\ in\ the\ array\n
+comment4.params=
+comment4.target=void\ testCountWordLengths()
+comment4.text=\n\ TEST\ METHOD\ for\ Word\ Lengths\n\ RIGHT-CLICK\ this\ method\ in\ BlueJ\ to\ run\ it\!\n\ Edit\ the\ 'content'\ variable\ to\ test\ with\ different\ input\n
+numComments=5
