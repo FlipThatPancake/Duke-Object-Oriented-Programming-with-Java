@@ -1,7 +1,8 @@
-// ============================================
-// FILE 1: WordLengths.java
-// Save this as "WordLengths.java"
-// ============================================
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * Assignment 1: Word Lengths
@@ -99,21 +100,82 @@ public class WordLengths {
     }
     
     /**
+     * Opens a file chooser dialog and returns the selected file
+     * @return the selected File, or null if cancelled
+     */
+    private File chooseFile() {
+        // Create a file chooser dialog
+        JFileChooser fileChooser = new JFileChooser();
+        
+        // Set the title of the dialog window
+        fileChooser.setDialogTitle("Select a Text File");
+        
+        // Create a filter to show only .txt files
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+            "Text Files (*.txt)", "txt");
+        fileChooser.setFileFilter(filter);
+        
+        // Show the dialog and get the user's choice
+        // APPROVE_OPTION means they clicked "Open" (not "Cancel")
+        int result = fileChooser.showOpenDialog(null);
+        
+        if (result == JFileChooser.APPROVE_OPTION) {
+            // Return the file they selected
+            return fileChooser.getSelectedFile();
+        }
+        // Return null if they cancelled
+        return null;
+    }
+    
+    /**
+     * Reads all content from a file and returns it as a String
+     * @param file - the file to read
+     * @return the file contents as a String, or null if error
+     */
+    private String readFile(File file) {
+        try {
+            // Files.readString() reads the entire file into one String
+            // This is available in Java 11+
+            return Files.readString(file.toPath());
+        } catch (IOException e) {
+            // If something goes wrong (file not found, can't read, etc.)
+            System.out.println("Error reading file: " + e.getMessage());
+            return null;
+        }
+    }
+    
+    /**
      * TEST METHOD for Word Lengths
      * RIGHT-CLICK this method in BlueJ to run it!
-     * Edit the 'content' variable to test with different input
+     * Opens a file chooser to select a text file
      */
     public void testCountWordLengths() {
-        // EDIT THIS to test with different content
-        // \n means newline character (like pressing Enter)
-        // + concatenates (joins) strings together
-        String content = "Laer. My necessaries are embark'd. Farewell.\n" +
-                        "And, sister, as the winds give benefit";
-        
-        // println prints a line and then moves to the next line
         System.out.println("=== WORD LENGTHS TEST ===");
-        System.out.println("Input text:\n" + content);
-        System.out.println("\n--- Analysis ---");
+        System.out.println("Please select a text file...\n");
+        
+        // Open file chooser and get the selected file
+        File selectedFile = chooseFile();
+        
+        // If user cancelled, exit
+        if (selectedFile == null) {
+            System.out.println("No file selected. Test cancelled.");
+            return;
+        }
+        
+        // Read the file content
+        String content = readFile(selectedFile);
+        
+        // If reading failed, exit
+        if (content == null) {
+            System.out.println("Could not read file. Test cancelled.");
+            return;
+        }
+        
+        // Show which file we're analyzing
+        System.out.println("Analyzing file: " + selectedFile.getName());
+        System.out.println("File size: " + content.length() + " characters\n");
+        
+        System.out.println("--- Analysis ---");
         
         // create an array of 31 integers (indices 0-30), all start at 0
         int[] counts = new int[31];
@@ -121,20 +183,30 @@ public class WordLengths {
         // call our method to fill up the counts array
         countWordLengths(content, counts);
         
+        // Calculate total words
+        int totalWords = 0;
+        for (int count : counts) {
+            totalWords += count;
+        }
+        System.out.println("Total words analyzed: " + totalWords + "\n");
+        
         // Print word count for each length
         // regular for loop: start at 0, go while i < counts.length, increment i each time
         for (int i = 0; i < counts.length; i++) {
             // only print if there are words of this length (count > 0)
             if (counts[i] > 0) {
                 // print the length, then the count
-                System.out.println(i + " letters: " + counts[i] + " words");
+                String label = (i == counts.length - 1) ? i + "+ letters" : i + " letters";
+                System.out.println(label + ": " + counts[i] + " words");
             }
         }
         
         // find which length had the most words
         int mostCommonLength = indexOfMax(counts);
         // print it out along with how many words had that length
-        System.out.println("\nMost common word length: " + mostCommonLength + 
+        String lengthLabel = (mostCommonLength == counts.length - 1) ? 
+            mostCommonLength + "+" : String.valueOf(mostCommonLength);
+        System.out.println("\nMost common word length: " + lengthLabel + 
                           " (" + counts[mostCommonLength] + " words)");
     }
 }
